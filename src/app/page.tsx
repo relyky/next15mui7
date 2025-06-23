@@ -9,14 +9,14 @@ import NextLink from 'next/link';
 
 export default function Home() {
   return (
-    <Container maxWidth="lg">
+    <Container maxWidth="lg" sx={{ outline: 'red dashed 2px', }}>
       <Box
         sx={{
           my: 4,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'center',
+          alignItems: 'center',          
         }}
       >
         <Typography variant="h4" component="h1" sx={{ mb: 2 }}>
@@ -25,10 +25,6 @@ export default function Home() {
         <Link href="/demo/demo002" color="secondary" component={NextLink}>
           Go to demo002
         </Link>
-        {/* 
-        <ProTip />
-        <Copyright />        
-        */}
       </Box>
     </Container>
   );

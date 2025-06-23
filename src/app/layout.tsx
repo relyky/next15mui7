@@ -3,7 +3,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import ModeSwitch from '@/components/ModeSwitch';
+import ResponsiveDrawer from '@/components/ResponsiveDrawer';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -13,11 +13,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            {/* --- Banner  */}
-            <ModeSwitch />
-            <article>
+
+            {/* content */}
+            <ResponsiveDrawer>
               {props.children}
-            </article>
+            </ResponsiveDrawer>
+            
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>
