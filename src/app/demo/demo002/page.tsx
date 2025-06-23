@@ -1,4 +1,5 @@
 import { Button } from "@mui/material";
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default async function Demo002Page() {
 
@@ -7,7 +8,8 @@ export default async function Demo002Page() {
       <h1>Demo002Page</h1>
       <p>今天天氣真好。</p>
 
-      <Button>Button</Button>
+      <MenuIcon />
+      <Button variant='contained' color='primary'>按鈕</Button>
 
     </div>
   )
