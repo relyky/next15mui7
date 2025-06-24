@@ -1,22 +1,27 @@
 "use client"
 import {
-    AppBar,
-    Box,
-    CssBaseline,
-    Drawer,
-    Toolbar,
-    Typography,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
-    Divider,
-    Link as MuiLink,
+  AppBar,
+  Box,
+  Drawer,
+  Toolbar,
+  Typography,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Divider,
+  Link as MuiLink,
+  IconButton,
+  styled,
 } from '@mui/material';
+import ThemeSwitch from './ThemeSwitch';
+
 // icons
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+import { useReducer } from 'react';
 
 const drawerWidth = 240;
 
@@ -25,22 +30,44 @@ interface Props {
 }
 
 export default function ClippedDrawer(props: Props) {
+  const [f_openDrawer, toggleDrawer] = useReducer((f: boolean, _: void) => !f, false);
+
+  const handleDrawerToggle = () => {
+    toggleDrawer();
+  };
+
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
         <Toolbar>
-          <Typography variant="h6" noWrap component="div">
-            Clipped drawer
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2 }}
+          >
+            <MenuIcon />
+          </IconButton>
+
+          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+            Clipped drawer {`${f_openDrawer}`}
           </Typography>
+
+          <ThemeSwitch />
         </Toolbar>
       </AppBar>
       <Drawer
-        variant="permanent"
+        variant="persistent"
+        anchor='left'
+        open={f_openDrawer}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
-          [`& .MuiDrawer-paper`]: { width: drawerWidth, boxSizing: 'border-box' },
+          [`& .MuiDrawer-paper`]: {
+            width: drawerWidth,
+            boxSizing: 'border-box'
+          },
         }}
       >
         <Toolbar />
@@ -72,31 +99,58 @@ export default function ClippedDrawer(props: Props) {
           </List>
         </Box>
       </Drawer>
-      <Box component="main" sx={{ flexGrow: 1 }}>
+      <Main open={f_openDrawer}>
         <Toolbar />
         <Box component="article" sx={{ minHeight: 'calc(100vh - 144px)' }}>
           {props.children}
         </Box>
-
-        {/* footer */}
-        <Divider variant='middle' sx={{ my: 1 }} />
-        <Box component="footer">
-          <Typography
-            variant="body2"
-            align="center"
-            sx={{
-              color: 'text.secondary',
-            }}
-          >
-            {'Copyright © '}
-            <MuiLink color="inherit" href="https://mui.com/">
-              Your Website
-            </MuiLink>{' '}
-            {new Date().getFullYear()}.
-          </Typography>
-        </Box>
-
-      </Box>
+        <Footer />
+      </Main>
     </Box>
   );
 }
+
+//-----------------------------------------------------------------------------
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })<{
+  open?: boolean;
+}>(({ theme }) => ({
+  flexGrow: 1,
+  transition: theme.transitions.create('margin', {
+    easing: theme.transitions.easing.sharp,
+    duration: theme.transitions.duration.leavingScreen,
+  }),
+  marginLeft: `-${drawerWidth}px`,
+  variants: [
+    {
+      props: ({ open }) => open,
+      style: {
+        transition: theme.transitions.create('margin', {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+      },
+    },
+  ],
+}));
+
+//-----------------------------------------------------------------------------
+const Footer = () => (
+  <Box component="footer">
+    <Divider variant='middle' sx={{ my: 1 }} />
+    <Typography
+      variant="body2"
+      align="center"
+      sx={{
+        color: 'text.secondary',
+      }}
+    >
+      {'Copyright © '}
+      <MuiLink color="inherit" href="https://mui.com/">
+        Your Website
+      </MuiLink>{' '}
+      {new Date().getFullYear()}.
+    </Typography>
+  </Box>
+)

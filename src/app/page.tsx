@@ -12,7 +12,6 @@ export default function Home() {
     <Container maxWidth="lg" sx={{ outline: 'red dashed 2px', }}>
       <Box
         sx={{
-          my: 4,
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',

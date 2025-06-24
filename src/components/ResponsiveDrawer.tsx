@@ -3,7 +3,6 @@ import { useState } from 'react';
 import {
   AppBar,
   Box,
-  CssBaseline,
   Divider,
   Drawer,
   IconButton,
@@ -16,12 +15,12 @@ import {
   Typography,
   Link as MuiLink,
 } from '@mui/material'
+import ThemeSwitch from './ThemeSwitch';
 
 // icons
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
-import ThemeSwitch from './ThemeSwitch';
 
 const drawerWidth = 240;
 
@@ -91,7 +90,6 @@ export default function ResponsiveDrawer(props: Props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <CssBaseline />
       <AppBar
         position="fixed"
         sx={{
