@@ -4,6 +4,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import ResponsiveDrawer from '@/components/ResponsiveDrawer';
+import ClippedDrawer from '@/components/ClippedDrawer';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
@@ -15,9 +16,12 @@ export default function RootLayout(props: { children: React.ReactNode }) {
             <CssBaseline />
 
             {/* content */}
-            <ResponsiveDrawer>
+            <ClippedDrawer>
               {props.children}
-            </ResponsiveDrawer>
+            </ClippedDrawer>
+            {/* <ResponsiveDrawer>
+              {props.children}
+            </ResponsiveDrawer> */}
             
           </ThemeProvider>
         </AppRouterCacheProvider>
