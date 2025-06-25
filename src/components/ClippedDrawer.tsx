@@ -55,6 +55,7 @@ export default function ClippedDrawer(props: Props) {
         anchor='left'
         open={f_openDrawer}
         onClose={() => toggleDrawer()}
+        aria-hidden={false}
         sx={{
           width: drawerWidth,
           flexShrink: 0,
