@@ -9,8 +9,9 @@ const roboto = Roboto({
 });
 
 /*
-* ref→[Theming](https://mui.com/material-ui/customization/theming/)
-*/
+ * ref→[Default theme viewer](https://mui.com/material-ui/customization/default-theme/)
+ * ref→[Theming](https://mui.com/material-ui/customization/theming/)
+ */
 const theme = createTheme({
   palette: {
     mode: 'light', // 'light','dark'
