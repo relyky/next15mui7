@@ -5,6 +5,7 @@ import theme from '@/theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 //import ResponsiveDrawer from '@/components/ResponsiveDrawer';
 import ClippedDrawer from '@/components/ClippedDrawer';
+import "./globals.css";
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
