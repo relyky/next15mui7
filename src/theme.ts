@@ -4,7 +4,7 @@ import { Roboto } from 'next/font/google';
 
 const roboto = Roboto({
   weight: ['300', '400', '500', '700'],
-  subsets: ['latin','latin-ext'],
+  subsets: ['latin', 'latin-ext'],
   display: 'swap',
 });
 
@@ -18,21 +18,35 @@ const theme = createTheme({
       main: '#BF4690',
       dark: '#802F61',
       light: '#ED58B4',
+      contrastText: '#fffaf0',
     },
     secondary: {
       main: '#CA87B0',
+      contrastText: '#fffaf0',
     },
-    info:{
+    info: {
       main: '#36A2EB',
+      contrastText: '#fffaf0',
     },
     success: {
       main: '#70C699',
+      contrastText: '#fffaf0',
     },
-    warning:{
-      main: '#FF9F40'
+    warning: {
+      main: '#FF9F40',
+      contrastText: '#fffaf0',
     },
     error: {
       main: '#FF6384',
+      contrastText: '#fffaf0',
+    },
+    common: {
+      black: '#010101',
+      white: '#fefefe',
+    },
+    background: {
+      default: '#fffafa', // snow #FFFAFA
+      paper: '#fafafa',
     },
   },
   colorSchemes: { light: true, dark: true },
