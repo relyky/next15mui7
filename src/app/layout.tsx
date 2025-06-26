@@ -3,13 +3,13 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme';
 import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
-import ResponsiveDrawer from '@/components/ResponsiveDrawer';
+//import ResponsiveDrawer from '@/components/ResponsiveDrawer';
 import ClippedDrawer from '@/components/ClippedDrawer';
 
 export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="zh-Hant" suppressHydrationWarning>
-      <body>
+      <body cz-shortcut-listen="true">
         <InitColorSchemeScript attribute="class" />
         <AppRouterCacheProvider options={{ enableCssLayer: true }}>
           <ThemeProvider theme={theme}>

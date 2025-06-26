@@ -2,6 +2,7 @@
 import { FC, ReactNode, useState } from "react";
 import { Container, Tab, Tabs, Typography } from "@mui/material";
 import ThemePalette from "./ThemePalette";
+import ThemeTypography from "./ThemeTypography";
 
 export default function Demo002Page() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -12,7 +13,7 @@ export default function Demo002Page() {
 
       <Tabs value={tabIndex} onChange={(_, v) => setTabIndex(v)}>
         <Tab label="調色盤" />
-        <Tab label="Item Two" />
+        <Tab label="文字排版" />
         <Tab label="Item Three" />
       </Tabs>
 
@@ -21,7 +22,7 @@ export default function Demo002Page() {
       </TabPanel>
 
       <TabPanel index={1} value={tabIndex}>
-        <h1>111</h1>
+        <ThemeTypography />        
       </TabPanel>
 
       <TabPanel index={2} value={tabIndex}>
