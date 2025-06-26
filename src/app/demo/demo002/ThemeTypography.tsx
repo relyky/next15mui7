@@ -1,4 +1,4 @@
-import { Box, Grid, MenuItem, Paper, Select, Switch, Toolbar, Typography } from "@mui/material";
+import { Box, FormControlLabel, Grid, MenuItem, Paper, Select, Switch, Toolbar, Typography } from "@mui/material";
 import { FC, useState } from "react";
 
 export default function ThemeTypography() {
@@ -8,8 +8,8 @@ export default function ThemeTypography() {
 
   return (
     <div>
-      <Toolbar>
-        <Typography variant="h6" sx={{ mr: 2 }}>顯示參數 Paper</Typography>
+      <Toolbar sx={{ gap: 1 }}>
+        <Typography variant="h6">顯示參數 Paper</Typography>
         <Select size='small' value={variant} onChange={(e) => setVariant(e.target.value)}>
           <MenuItem value={'elevation'}>elevation</MenuItem>
           <MenuItem value={'outlined'}>outlined</MenuItem>
@@ -20,8 +20,12 @@ export default function ThemeTypography() {
           <MenuItem value={3}>3</MenuItem>
           <MenuItem value={5}>5</MenuItem>
         </Select>
-        <Switch checked={square} onChange={(e) => setSquare(e.target.checked)} />
+        <FormControlLabel
+          control={<Switch checked={square} onChange={(e) => setSquare(e.target.checked)} />}
+          label="square"
+        />
       </Toolbar>
+
       <Paper sx={{ p: 2, mb: 2 }} variant={variant} elevation={elevation} square={square}>
         <Typography variant="overline">模擬上方標題</Typography>
         <Typography variant="h4" gutterBottom>模擬文章標題</Typography>
