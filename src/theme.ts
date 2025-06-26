@@ -8,7 +8,33 @@ const roboto = Roboto({
   display: 'swap',
 });
 
+/*
+* ref→[Theming](https://mui.com/material-ui/customization/theming/)
+*/
 const theme = createTheme({
+  palette: {
+    mode: 'light', // 'light','dark'
+    primary: {
+      main: '#BF4690',
+      dark: '#802F61',
+      light: '#ED58B4',
+    },
+    secondary: {
+      main: '#CA87B0',
+    },
+    info:{
+      main: '#36A2EB',
+    },
+    success: {
+      main: '#70C699',
+    },
+    warning:{
+      main: '#FF9F40'
+    },
+    error: {
+      main: '#FF6384',
+    },
+  },
   colorSchemes: { light: true, dark: true },
   cssVariables: {
     colorSchemeSelector: 'class',
@@ -16,22 +42,24 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
-  components: {
-    MuiAlert: {
-      styleOverrides: {
-        root: {
-          variants: [
-            {
-              props: { severity: 'info' },
-              style: {
-                backgroundColor: '#60a5fa',
-              },
-            },
-          ],
-        },
-      },
-    },
-  },
+  // components: {
+  //   MuiAlert: {
+  //     styleOverrides: {
+  //       root: {
+  //         variants: [
+  //           {
+  //             props: { severity: 'info' },
+  //             style: {
+  //               backgroundColor: '#60a5fa',
+  //             },
+  //           },
+  //         ],
+  //       },
+  //     },
+  //   },
+  // },
 });
+
+const defaultTheme = createTheme();
 
 export default theme;
