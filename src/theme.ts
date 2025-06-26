@@ -56,6 +56,9 @@ const theme = createTheme({
   typography: {
     fontFamily: roboto.style.fontFamily,
   },
+  shape: {
+    borderRadius: 10,
+  },
   // components: {
   //   MuiAlert: {
   //     styleOverrides: {
@@ -75,5 +78,6 @@ const theme = createTheme({
 });
 
 const defaultTheme = createTheme();
+console.log('defaultTheme', defaultTheme);
 
 export default theme;
