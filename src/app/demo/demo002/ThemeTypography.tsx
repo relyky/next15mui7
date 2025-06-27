@@ -29,20 +29,17 @@ export default function ThemeTypography() {
       <Paper sx={{ p: 2, mb: 2 }} variant={variant} elevation={elevation} square={square}>
         <Typography variant="overline">模擬上方標題</Typography>
         <Typography variant="h4" gutterBottom>模擬文章標題</Typography>
-        <Box component="p" typography="body1">
-          body1. 我們專注於卓越的細節與結構美學，那些令人滿意的結果來自於創造力與堅持。即使困難重重，我們仍堅持品質與完整性。某些幾近完美的成果，也正是我們努力的證明。
-        </Box>
-        <Box component="p" typography="body1">
+        <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           這是一段模擬文字，用於展示排版效果與視覺風格。文字內容無特定意義，僅供測試使用。若有任何格式錯誤，請及時修正以確保整體一致性。您可以自由替換這段內容，來滿足實際需求或版面設計規劃。
         </Box>
         <Typography variant="h6" gutterBottom>模擬段落標題</Typography>
-        <Box component="p" typography="body1">
+        <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           這是一段中文假文，用來模擬段落排列與字型樣式的呈現效果。請忽略文字本身的意義，專注於版面整體的平衡與可讀性。
         </Box>
-        <Box component="p" typography="body1">
+        <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           為了測試不同裝置或平台的相容性，我們可能會重複使用這類內容作為填充文字。當正式內容尚未完成時，這些模擬資料將有助於介面設計、排版驗證與使用者體驗的前期評估。
         </Box>
-        <Box component="p" typography="body1">
+        <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           如需實際內容，請替換本段文字，或與相關人員確認最終資訊版本。
         </Box>
       </Paper>
