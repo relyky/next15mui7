@@ -1,8 +1,11 @@
 "use client"
-import { useState } from 'react';
-import {IconButton, Menu, MenuItem} from '@mui/material';
+import { useMemo, useState } from 'react';
+import { IconButton, Menu, MenuItem } from '@mui/material';
 import { useColorScheme } from '@mui/material/styles';
+
 import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from '@mui/icons-material/LightMode';
+import SystemModeIcon from '@mui/icons-material/Brightness4';
 
 export default function MenuAppBar() {
   const { mode, setMode } = useColorScheme();
@@ -22,6 +25,12 @@ export default function MenuAppBar() {
     setAnchorEl(null)
   }
 
+  const ModeIcon = useMemo(() => {
+    return mode === 'light' ? LightModeIcon
+      : mode === 'dark' ? DarkModeIcon
+        : SystemModeIcon
+  }, [mode])
+
   if (!mode) return null;
 
   return (
@@ -34,7 +43,7 @@ export default function MenuAppBar() {
         onClick={handleMenu}
         color="inherit"
       >
-        <DarkModeIcon />
+        <ModeIcon />
       </IconButton>
       <Menu
         id="menu-appbar"

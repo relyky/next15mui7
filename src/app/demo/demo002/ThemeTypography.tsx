@@ -15,10 +15,9 @@ export default function ThemeTypography() {
           <MenuItem value={'outlined'}>outlined</MenuItem>
         </Select>
         <Select size='small' value={elevation} onChange={(e) => setElevation(e.target.value)}>
-          <MenuItem value={0}>0</MenuItem>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
-          <MenuItem value={5}>5</MenuItem>
+          {[0, 1, 3, 5, 7, 9].map((v, i) => (
+            <MenuItem key={i} value={v}>{v}</MenuItem>
+          ))}
         </Select>
         <FormControlLabel
           control={<Switch checked={square} onChange={(e) => setSquare(e.target.checked)} />}
@@ -28,11 +27,11 @@ export default function ThemeTypography() {
 
       <Paper sx={{ p: 2, mb: 2 }} variant={variant} elevation={elevation} square={square}>
         <Typography variant="overline">模擬上方標題</Typography>
-        <Typography variant="h4" gutterBottom>模擬文章標題</Typography>
+        <Typography variant="h3" gutterBottom>模擬文章標題</Typography>
         <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           這是一段模擬文字，用於展示排版效果與視覺風格。文字內容無特定意義，僅供測試使用。若有任何格式錯誤，請及時修正以確保整體一致性。您可以自由替換這段內容，來滿足實際需求或版面設計規劃。
         </Box>
-        <Typography variant="h6" gutterBottom>模擬段落標題</Typography>
+        <Typography variant="h5" gutterBottom>模擬段落標題</Typography>
         <Box component="p" typography='body1' sx={{ textIndent: '2em' }}>
           這是一段中文假文，用來模擬段落排列與字型樣式的呈現效果。請忽略文字本身的意義，專注於版面整體的平衡與可讀性。
         </Box>

@@ -3,6 +3,7 @@ import { FC, ReactNode, useState } from "react";
 import { Container, Tab, Tabs, Typography } from "@mui/material";
 import ThemePalette from "./ThemePalette";
 import ThemeTypography from "./ThemeTypography";
+import UiLayoutPractice from "./UiLayoutPractice";
 
 export default function Demo002Page() {
   const [tabIndex, setTabIndex] = useState(0);
@@ -14,7 +15,7 @@ export default function Demo002Page() {
       <Tabs value={tabIndex} onChange={(_, v) => setTabIndex(v)}>
         <Tab label="調色盤" />
         <Tab label="文字排版" />
-        <Tab label="Item Three" />
+        <Tab label="使用介面部局" />
       </Tabs>
 
       <TabPanel index={0} value={tabIndex}>
@@ -26,7 +27,7 @@ export default function Demo002Page() {
       </TabPanel>
 
       <TabPanel index={2} value={tabIndex}>
-        <h1>222</h1>
+        <UiLayoutPractice />
       </TabPanel>
     </Container>
   )
