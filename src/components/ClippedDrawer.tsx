@@ -19,6 +19,7 @@ import Footer from './Footer'
 // icons
 import MenuIcon from '@mui/icons-material/Menu';
 import NavMenu from './NavMenu';
+import { usePathname } from 'next/navigation';
 
 const drawerWidth = 240;
 
@@ -28,33 +29,42 @@ interface Props {
 
 function HideOnScroll(props: {
   onTrigger: (trigger: boolean) => void;
+  matchUp: boolean,
   children?: React.ReactElement<unknown>;
 }) {
-  const { children } = props;
+  const { children, matchUp } = props;
   const trigger = useScrollTrigger({
     target: undefined,
   });
 
   useEffect(() => {
-    props.onTrigger(trigger)
-  }, [trigger])
+    if (!matchUp)
+      props.onTrigger(trigger)
+  }, [trigger, matchUp])
 
-  console.log('HideOnScroll.render', { trigger })
+  //console.log('HideOnScroll.render', { trigger })
   return (
-    <Slide appear={false} direction="down" in={!trigger}>
+    <Slide appear={false} direction="down" in={matchUp || !trigger}>
       {children ?? <div />}
     </Slide>
   );
 }
 
 export default function ClippedDrawer(props: Props) {
-  const theme = useTheme();
-  const matchUp = useMediaQuery(theme.breakpoints.up('sm'));
-  const [f_openDrawer, toggleDrawer] = useReducer((f: boolean, _: void) => !f, true);
+  const theme = useTheme()
+  const pathname = usePathname();
+  const matchUp = useMediaQuery(theme.breakpoints.up('sm'))
+  const [f_openDrawer, toggleDrawer] = useReducer((f: boolean, _: void) => !f, true)
+
+  useEffect(() => {
+    console.log('URL 已變更為:', pathname);
+    if(!matchUp && f_openDrawer)
+      toggleDrawer()
+  }, [pathname]); // pathname 作為依賴項，確保它變動時觸發效果
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <HideOnScroll onTrigger={(trigger) => { if (f_openDrawer) toggleDrawer() }}>
+      <HideOnScroll matchUp={matchUp} onTrigger={(trigger) => { if (f_openDrawer) toggleDrawer() }}>
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <Toolbar>
             <IconButton

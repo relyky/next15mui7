@@ -55,7 +55,9 @@ export default function ThemePalette() {
         </Stack>
       </Paper>
 
-      <pre>{JSON.stringify(palette, null, 2)}</pre>
+      <Box component={'pre'} sx={{ whiteSpace: 'pre-wrap' }}>
+        {JSON.stringify(palette, null, 2)}
+      </Box>
     </div>
 
   )
