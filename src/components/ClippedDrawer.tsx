@@ -1,5 +1,5 @@
 "use client"
-import { useReducer } from 'react';
+import { useEffect, useReducer } from 'react';
 import {
   AppBar,
   Box,
@@ -26,12 +26,20 @@ interface Props {
   children?: React.ReactElement<unknown>;
 }
 
-function HideOnScroll(props: Props) {
+function HideOnScroll(props: {
+  onTrigger: (trigger: boolean) => void;
+  children?: React.ReactElement<unknown>;
+}) {
   const { children } = props;
   const trigger = useScrollTrigger({
     target: undefined,
   });
 
+  useEffect(() => {
+    props.onTrigger(trigger)
+  }, [trigger])
+
+  console.log('HideOnScroll.render', { trigger })
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       {children ?? <div />}
@@ -46,7 +54,7 @@ export default function ClippedDrawer(props: Props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <HideOnScroll {...props}>
+      <HideOnScroll onTrigger={(trigger) => { if (f_openDrawer) toggleDrawer() }}>
         <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
           <Toolbar>
             <IconButton
