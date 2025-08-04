@@ -7,7 +7,7 @@ import InitColorSchemeScript from '@mui/material/InitColorSchemeScript';
 import ClippedDrawer from '@/components/ClippedDrawer';
 import "./globals.css";
 
-export default function RootLayout(props: { children: React.ReactNode }) {
+export default function RootLayout(props: { children?: React.ReactElement<unknown> }) {
   return (
     <html lang="zh-Hant" suppressHydrationWarning>
       <body cz-shortcut-listen="true">

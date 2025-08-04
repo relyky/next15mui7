@@ -8,7 +8,9 @@ import {
   Typography,
   IconButton,
   styled,
-  useMediaQuery
+  useMediaQuery,
+  Slide,
+  useScrollTrigger
 } from '@mui/material';
 import { useTheme } from '@mui/material/styles';
 import ThemeSwitch from './ThemeSwitch';
@@ -21,7 +23,20 @@ import NavMenu from './NavMenu';
 const drawerWidth = 240;
 
 interface Props {
-  children: React.ReactNode;
+  children?: React.ReactElement<unknown>;
+}
+
+function HideOnScroll(props: Props) {
+  const { children } = props;
+  const trigger = useScrollTrigger({
+    target: undefined,
+  });
+
+  return (
+    <Slide appear={false} direction="down" in={!trigger}>
+      {children ?? <div />}
+    </Slide>
+  );
 }
 
 export default function ClippedDrawer(props: Props) {
@@ -31,25 +46,27 @@ export default function ClippedDrawer(props: Props) {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
-        <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={() => toggleDrawer()}
-            sx={{ mr: 2 }}
-          >
-            <MenuIcon />
-          </IconButton>
+      <HideOnScroll {...props}>
+        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+          <Toolbar>
+            <IconButton
+              color="inherit"
+              aria-label="open drawer"
+              edge="start"
+              onClick={() => toggleDrawer()}
+              sx={{ mr: 2 }}
+            >
+              <MenuIcon />
+            </IconButton>
 
-          <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            Clipped drawer
-          </Typography>
+            <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
+              Clipped drawer
+            </Typography>
 
-          <ThemeSwitch />
-        </Toolbar>
-      </AppBar>
+            <ThemeSwitch />
+          </Toolbar>
+        </AppBar>
+      </HideOnScroll>
       <Drawer
         variant={matchUp ? "persistent" : "temporary"}
         anchor='left'
