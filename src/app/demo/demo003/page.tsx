@@ -3,6 +3,7 @@ import Image from 'next/image'
 import React from "react";
 import { Box, Container, Paper, Typography } from "@mui/material";
 import SwiperSample from './swiperSample';
+import ProductSwiper from './productSwiper';
 
 const settings = {
   dots: true,
@@ -20,7 +21,11 @@ export default function Demo003Page() {
         show me the money.
       </Typography>
     
+      <ProductSwiper />
+
       <SwiperSample />
+
+
       
     </Container>
   )
