@@ -1,0 +1,22 @@
+
+/* 手機版樣式 xs */
+.my-dynamic-swiper {
+  height: 300px;
+  width: 100%;
+  max-width: 320px;
+  margin: 2rem auto
+}
+
+/* 平板版樣式 sm */
+@media (min-width: 600px) {
+  .my-dynamic-swiper {
+    max-width: 540px; /* 在平板上，最大寬度為 600px */
+  }
+}
+
+/* 桌面版樣式 md */
+@media (min-width: 900px) {
+  .my-dynamic-swiper {
+    max-width: 800px; 
+  }
+}
