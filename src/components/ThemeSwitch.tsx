@@ -7,7 +7,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import SystemModeIcon from '@mui/icons-material/Brightness4';
 
-export default function MenuAppBar() {
+export default function ThemeSwitch() {
   const { mode, setMode } = useColorScheme();
 
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
