@@ -1,34 +1,19 @@
 "use client"
 import { Box } from '@mui/material';
-import { useCallback, useEffect, useId, useMemo, useState } from 'react'
-import CountUp, { useCountUp } from 'react-countup';
+import { useEffect, useId, useMemo, useState } from 'react'
+import { useCountUp } from 'react-countup';
 
 export default function CountUpDemo() {
-  const [start, setStart] = useState<number>(0)
   const [end, setEnd] = useState<number>(0)
-
-  const id = useId()
-  const counterId = useMemo(() => `up-counter-${id}`, [id])
-
-  const handleEnd = useCallback(() => {
-    setStart(end)
-  }, [])
-
-  const hand = useCountUp({ ref: counterId, end: end, start: start, onEnd: handleEnd });
-
-  useEffect(() => {
-    hand.update(end)
-  }, [end])
 
   return (
     <div>
-      <div>Count-Up Demo: {counterId}</div>
-      
-      <Box component='span' id={counterId} sx={{fontSize:'2em'}} />
+      <div>Count-Up Demo</div>
+
+      <CountUpWidget end={end} />
 
       <hr />
-      <div>{start}~{end}</div>
-
+      <div>end: {end}</div>
       <button onClick={() => {
         setEnd(prev => prev + 7000)
       }}>下一段</button>
@@ -38,5 +23,22 @@ export default function CountUpDemo() {
       }}>上一段</button>
 
     </div>
+  )
+}
+
+//------------
+const CountUpWidget: React.FC<{
+  end: number
+}> = ({ end }) => {
+  const id = useId()
+  const counterId = useMemo(() => `up-counter-${id}`, [id])
+  const hand = useCountUp({ ref: counterId, end: end });
+
+  useEffect(() => {
+    hand.update(end)
+  }, [end])
+
+  return (
+    <Box component='span' id={counterId} sx={{ fontSize: '2em' }} />
   )
 }
