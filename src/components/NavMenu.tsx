@@ -29,8 +29,8 @@ export default function NavMenu() {
           <ListMenuItem label='展示功能０３' href='/demo/demo003' />
           <ListMenuItem label='展示功能０４' href='/demo/demo004' />
           <ListMenuItem label='展示功能０５' href='/demo/demo005' />
-          <ListMenuItem label='Lab 01' href='/lab01' />
-          <ListMenuItem label='Lab 02' href='/lab02' />
+          <ListMenuItem label='Lab 01' href='/lab/lab01' />
+          <ListMenuItem label='Lab 02' href='/lab/lab02' />
           <ListMenuItem label='Counter' href='/counter' />
         </ListMenuGroup>
 
