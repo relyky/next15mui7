@@ -49,11 +49,13 @@ export default function ActionStateLab4() {
           defaultValue={state.vipName}
         />
 
-        <FormControlLabel label="Required"
-          control={<Checkbox name='isEnterprise'
-            defaultChecked={state?.isEnterprise === 'Y'}
-          />}
-        />
+        <FormGroup>
+          <FormControlLabel label="Required"
+            control={<Checkbox name='isEnterprise'
+              defaultChecked={state?.isEnterprise === 'Y'}
+              />}
+          />
+        </FormGroup>
 
         <Button type='submit'>submit</Button>
       </form>
