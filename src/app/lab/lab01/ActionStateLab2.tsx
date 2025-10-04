@@ -4,20 +4,18 @@ import { useActionState } from "react";
 
 async function myAction(curState: number, formData: FormData) {   
   const cmd = formData.get('cmd');
-  
   const nextState = cmd === 'increase' ? curState + 1 
                   : cmd === 'decrease' ? curState - 1
-                  : curState;
- 
+                  : curState; 
   return nextState;
 }
 
-export default function ActionStateLab1() {
+export default function ActionStateLab2() {
   const [state, formAction] = useActionState(myAction, 0);
 
   return (
     <Paper sx={{p:3}}>
-      <Typography variant="subtitle2" gutterBottom>useActionState 練習一A</Typography>
+      <Typography variant="subtitle2" gutterBottom>useActionState 練習二</Typography>
       <Box typography='body2' color='text.secondary'>多個 button。</Box>
 
       <form action={formAction}>
