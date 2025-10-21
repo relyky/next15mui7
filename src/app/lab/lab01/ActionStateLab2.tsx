@@ -11,7 +11,7 @@ async function myAction(curState: number, formData: FormData) {
 }
 
 export default function ActionStateLab2() {
-  const [state, formAction] = useActionState(myAction, 0);
+  const [state, formAction, isPending] = useActionState(myAction, 0);
 
   return (
     <Paper sx={{p:3}}>
@@ -21,8 +21,8 @@ export default function ActionStateLab2() {
       <form action={formAction}>
         <Box textAlign='center'>{state}</Box>
 
-        <Button type='submit' name='cmd' value='increase'>Increment</Button>
-        <Button type='submit' name='cmd' value='decrease'>Decrement</Button>
+        <Button type='submit' name='cmd' value='increase' disabled={isPending}>Increment</Button>
+        <Button type='submit' name='cmd' value='decrease' disabled={isPending}>Decrement</Button>
       </form>
 
     </Paper>
