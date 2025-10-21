@@ -18,13 +18,14 @@ export async function client2SubmitAction(curState: number, formData: FormData) 
 }
 
 export async function client3SubmitAction(curState: IClient3State, formData: FormData) {
+  const atext = formData.get('atext');
   const cmd = formData.get('cmd');
+  console.log('client3SubmitAction', curState, formData, { cmd, atext });
 
   const anum = cmd === 'increase' ? curState.anum + 1
     : cmd === 'decrease' ? curState.anum - 1
       : curState.anum;
 
-  const nextState = <IClient3State>{ ...curState, anum }
-
+  const nextState = <IClient3State>{ ...curState, anum, atext }
   return nextState;
 }
