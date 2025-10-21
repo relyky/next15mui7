@@ -1,6 +1,6 @@
 'use client'
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, LinearProgress, Paper, TextField, Typography } from "@mui/material";
-import { useActionState, useState } from "react";
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, LinearProgress, Paper, TextField, Typography, useEventCallback } from "@mui/material";
+import { useActionState, useEffect, useState } from "react";
 
 interface IVip {
   paddleNum: number;
@@ -49,13 +49,12 @@ export default function ActionStateLab4() {
           defaultValue={state.vipName}
         />
 
-        <FormGroup>
-          <FormControlLabel label="Required"
-            control={<Checkbox name='isEnterprise'
-              defaultChecked={state?.isEnterprise === 'Y'}
-              />}
-          />
-        </FormGroup>
+        <CheckInput
+          label='Required'
+          name='isEnterprise'
+          defaultChecked={state.isEnterprise === 'Y'}
+          onChange={console.log}
+        />
 
         <Button type='submit'>submit</Button>
       </form>
@@ -63,5 +62,42 @@ export default function ActionStateLab4() {
       <pre>state: {JSON.stringify(state, null, 2)}</pre>
 
     </Paper>
+  )
+}
+
+//---------------
+const CheckInput = (props: {
+  label?: string
+  name?: string
+  defaultChecked?: boolean
+  onChange: (checked: boolean, name?: string) => void
+}) => {
+  const [innerChecked, setInnerChecked] = useState(false)
+
+  const handleRefreshDefaultChecked = useEventCallback((defaultChecked?: boolean) => {
+    if (defaultChecked === true && innerChecked !== true)
+      setInnerChecked(true)
+    else if (defaultChecked === false && innerChecked !== false)
+      setInnerChecked(false)
+  })
+
+  useEffect(() => {
+    handleRefreshDefaultChecked(props.defaultChecked)
+  }, [props.defaultChecked])
+
+  // events up
+  useEffect(() => {
+    props?.onChange(innerChecked, props?.name)
+  }, [innerChecked])
+
+  return (
+    <FormGroup>
+      <FormControlLabel label={props?.label}
+        control={<Checkbox name={props?.name}
+          checked={innerChecked}
+          onChange={e => setInnerChecked(e.target.checked)}
+        />}
+      />
+    </FormGroup>
   )
 }
