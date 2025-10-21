@@ -7,7 +7,7 @@ import ActionStateLab4 from "./ActionStateLab4";
 export default async function Lab01Page() {
   return (
     <Container>
-      <Typography variant="h3">Lab01 - useActionState</Typography>
+      <Typography variant="h3">Lab01 - useActionState (client)</Typography>
 
       <Box display='flex' flexWrap='wrap' gap={3}>
         <ActionStateLab1 />

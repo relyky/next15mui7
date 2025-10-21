@@ -1,6 +1,6 @@
 'use client'
-import { Box, Button, Checkbox, FormControlLabel, FormGroup, LinearProgress, Paper, TextField, Typography } from "@mui/material";
-import { useActionState, useEffect, useEffectEvent, useState } from "react";
+import { useActionState, useEffect, useState } from "react";
+import { Box, Button, Checkbox, FormControlLabel, FormGroup, LinearProgress, Paper, TextField, Typography, useEventCallback } from "@mui/material";
 
 interface IVip {
   paddleNum: number;
@@ -74,12 +74,16 @@ const CheckInput = (props: {
 }) => {
   const [innerChecked, setInnerChecked] = useState(false)
 
-  const handleRefreshDefaultChecked = useEffectEvent((defaultChecked?: boolean) => {
+  const handleRefreshDefaultChecked = useEventCallback((defaultChecked?: boolean) => {
     if (defaultChecked === true && innerChecked !== true)
       setInnerChecked(true)
     else if (defaultChecked === false && innerChecked !== false)
       setInnerChecked(false)
   })
+
+  useEffect(() => {
+    handleRefreshDefaultChecked(props?.defaultChecked)
+  }, [props?.defaultChecked])
 
   // events up
   useEffect(() => {
