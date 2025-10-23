@@ -9,6 +9,7 @@ export async function increment(previousState: number, formData: FormData) {
   return previousState + 1;
 }
 
+<<<<<<< HEAD
 export async function client2SubmitAction(curState: number, formData: FormData) {
   const cmd = formData.get('cmd');
   const nextState = cmd === 'increase' ? curState + 1
@@ -36,3 +37,5 @@ export async function client3SubmitAction(curState: IClient3State, formData: For
 
   return nextState;
 }
+=======
+>>>>>>> 1d26f881d38576a8b62783b95168561fbffa4a97
