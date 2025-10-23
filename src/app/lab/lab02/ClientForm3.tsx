@@ -16,7 +16,7 @@ export default function ClientForm() {
   return (
     <Paper sx={{ p: 3, mb: 3 }}>
 
-      <form action={formAction} >
+      <form action={formAction} method="post" >
         <Box textAlign='center'>anum: {state.anum}</Box>
 
         <InputText name='atext' />
@@ -50,11 +50,14 @@ function Submit(props: {
 
 //-------
 function FormStatusBoard() {
-  const status = useFormStatus();
+  const { action, method, pending, data: formData } = useFormStatus();
 
-  console.log('FormStatusBoard', { status })
+  const formKeys = Array.from(formData?.keys() ?? [], (k) => k)
+  const formValues = Object.fromEntries(formData?.entries() ?? new Map())
+
+  console.log('FormStatusBoard', { pending, action, method, formKeys, formValues })
   return <pre>
-    form status: {JSON.stringify(status, null, 2)}
+    form status: {JSON.stringify({ pending, action, method, formKeys, formValues })}
   </pre>
 }
 

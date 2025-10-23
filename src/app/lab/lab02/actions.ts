@@ -18,14 +18,21 @@ export async function client2SubmitAction(curState: number, formData: FormData) 
 }
 
 export async function client3SubmitAction(curState: IClient3State, formData: FormData) {
-  const atext = formData.get('atext');
-  const cmd = formData.get('cmd');
-  console.log('client3SubmitAction', curState, formData, { cmd, atext });
+  //const atext = formData.get('atext');
+  //const cmd = formData.get('cmd');
+  const formValues = Object.fromEntries(formData?.entries() ?? new Map())
+  console.log('client3SubmitAction', curState, formValues);
 
-  const anum = cmd === 'increase' ? curState.anum + 1
-    : cmd === 'decrease' ? curState.anum - 1
+  // calc. new state
+  const anum = formValues.cmd === 'increase' ? curState.anum + 1
+    : formValues.cmd === 'decrease' ? curState.anum - 1
       : curState.anum;
 
-  const nextState = <IClient3State>{ ...curState, anum, atext }
+  const nextState = <IClient3State>{
+     ...curState
+    , anum
+    , atext: formValues.atext 
+  }
+
   return nextState;
 }
